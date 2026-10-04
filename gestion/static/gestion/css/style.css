@@ -1,0 +1,626 @@
+:root {
+    --aw-bg: #12090c;
+    --aw-bg-secondary: #1c0d12;
+
+     --aw-text: #fff1f2;
+    --aw-text-muted: #bfa3a7;
+
+    --aw-primary: #e63946; 
+    --aw-primary-dark: #a4161a; 
+    --aw-primary-light: #ff6b75;
+
+    --aw-accent: #35d0a0; 
+    --aw-danger: #ff4d6d;
+
+    --aw-card-bg: rgba(255, 255, 255, 0.045); 
+    --aw-card-border: rgba(255, 255, 255, 0.10);
+
+    --aw-radius: clamp(12px, 1.5vw, 18px);
+
+    --aw-spacing-xs: clamp(4px, 0.5vw, 8px);
+    --aw-spacing-sm: clamp(8px, 1vw, 12px);
+    --aw-spacing-md: clamp(12px, 2vw, 20px);
+    --aw-spacing-lg: clamp(20px, 3vw, 32px);
+    --aw-spacing-xl: clamp(28px, 5vw, 56px);
+
+    --aw-transition: 0.2s ease;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background:
+    radial-gradient(
+        circle at 0% 0%,
+        rgba(230, 57, 70, 0.22) 0%,
+        transparent 35%
+    ),
+    radial-gradient(
+        circle at 100% 100%,
+        rgba(164, 22, 26, 0.12) 0%,
+        transparent 30%
+    ),
+    var(--aw-bg);
+
+    background-attachment: fixed;
+
+    color: var(--aw-text);
+}
+
+main {
+flex: 1;
+}
+
+/* =========================================================
+   CONTENEDOR RESPONSIVE
+========================================================= */
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-left: var(--aw-spacing-md);
+    padding-right: var(--aw-spacing-md);
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    padding-top: var(--aw-spacing-sm);
+    padding-bottom: var(--aw-spacing-sm);
+
+    background: rgba(11, 15, 30, 0.75);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid var(--aw-card-border);
+}
+
+.navbar-toggler {
+    background: rgba(255, 255, 255, 0.06);
+
+    border: 1px solid var(--aw-card-border);
+
+    border-radius: 10px;
+
+    padding: 7px 10px;
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.25);
+}
+
+
+/* =========================================================
+   MARCA
+========================================================= */
+
+.aw-brand {
+    display: inline-flex;
+    align-items: center;
+
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 700;
+
+    color: var(--aw-text);
+
+    text-decoration: none;
+
+    transition: color var(--aw-transition);
+}
+
+.aw-brand:hover {
+    color: var(--aw-primary-light);
+}
+
+
+/* =========================================================
+   NAVEGACIÓN
+========================================================= */
+
+.nav-link {
+    position: relative;
+
+    padding: 8px 12px !important;
+
+    color: var(--aw-text-muted);
+
+    font-size: clamp(14px, 1.5vw, 16px);
+
+    transition:
+        color var(--aw-transition),
+        background var(--aw-transition);
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: var(--aw-text);
+}
+
+.nav-link::after {
+    content: "";
+
+    position: absolute;
+
+    left: 12px;
+    right: 12px;
+    bottom: 2px;
+
+    height: 2px;
+
+    background: var(--aw-primary);
+
+    transform: scaleX(0);
+    transform-origin: center;
+
+    transition: transform var(--aw-transition);
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
+}
+
+
+/* =========================================================
+   BOTÓN OUTLINE
+========================================================= */
+
+.aw-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 40px;
+
+    padding: 7px clamp(14px, 2vw, 20px);
+
+    border: 1px solid var(--aw-card-border);
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: var(--aw-text);
+
+    font-size: clamp(13px, 1.4vw, 15px);
+    font-weight: 500;
+
+    text-decoration: none;
+
+    transition:
+        background var(--aw-transition),
+        border-color var(--aw-transition),
+        transform var(--aw-transition);
+}
+
+.aw-btn-outline:hover {
+    background: rgba(255, 255, 255, 0.07);
+
+    border-color: rgba(255, 255, 255, 0.18);
+
+    color: var(--aw-text);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   BOTÓN PRINCIPAL
+========================================================= */
+
+.aw-btn-primary,
+.btn-primary {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 42px;
+
+    padding: 8px clamp(16px, 2vw, 22px);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--aw-primary),
+            var(--aw-primary-dark)
+        );
+
+    border: none;
+
+    border-radius: 12px;
+
+    color: #ffffff;
+
+    font-size: clamp(13px, 1.4vw, 15px);
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        transform var(--aw-transition),
+        box-shadow var(--aw-transition),
+        background var(--aw-transition);
+}
+
+.aw-btn-primary:hover,
+.btn-primary:hover {
+    background:
+        linear-gradient(
+            135deg,
+            var(--aw-primary-light),
+            var(--aw-primary)
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 22px rgb(115 149 134 / 30%);
+}
+
+.aw-btn-primary:focus,
+.btn-primary:focus {
+    color: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgb(167 200 118 / 55%);
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.aw-card,
+.card {
+    width: 100%;
+
+    padding: var(--aw-spacing-md);
+
+    background: var(--aw-card-bg);
+
+    border: 1px solid var(--aw-card-border);
+
+    border-radius: var(--aw-radius);
+
+    color: var(--aw-text);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.10);
+
+    transition:
+        transform var(--aw-transition),
+        box-shadow var(--aw-transition),
+        border-color var(--aw-transition);
+}
+
+
+/* =========================================================
+   TITULOS DE CARD
+========================================================= */
+
+.aw-card h4 {
+    margin-bottom: var(--aw-spacing-sm);
+
+    font-size: clamp(17px, 2vw, 21px);
+
+    line-height: 1.3;
+
+    color: var(--aw-text);
+}
+
+
+/* =========================================================
+   TEXTOS
+========================================================= */
+
+.aw-monto-positivo {
+    color: var(--aw-accent);
+
+    font-weight: 600;
+}
+
+.aw-monto-negativo {
+    color: var(--aw-danger);
+
+    font-weight: 600;
+}
+
+.text-muted {
+    color: var(--aw-text-muted) !important;
+}
+
+
+/* =========================================================
+   FORMULARIOS
+========================================================= */
+
+.form-control,
+.form-select {
+    width: 100%;
+
+    min-height: 42px;
+
+    padding: 8px 14px;
+
+    background: rgba(255, 255, 255, 0.045);
+
+    border: 1px solid var(--aw-card-border);
+
+    border-radius: 11px;
+
+    color: var(--aw-text);
+
+    font-size: clamp(14px, 1.5vw, 16px);
+
+    transition:
+        background var(--aw-transition),
+        border-color var(--aw-transition),
+        box-shadow var(--aw-transition);
+}
+
+.form-control:hover,
+.form-select:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+.form-control:focus,
+.form-select:focus {
+    background: rgba(255, 255, 255, 0.075);
+
+    border-color: var(--aw-primary);
+
+    color: var(--aw-text);
+
+    outline: none;
+
+    box-shadow:
+        0 0 0 3px rgba(108, 92, 231, 0.20);
+}
+
+
+/* =========================================================
+   PLACEHOLDER
+========================================================= */
+
+.form-control::placeholder {
+    color: var(--aw-text-muted);
+
+    opacity: 0.75;
+}
+
+
+/* =========================================================
+   LABELS
+========================================================= */
+
+label {
+    display: inline-block;
+
+    margin-bottom: 5px;
+
+    color: var(--aw-text-muted);
+
+    font-size: clamp(13px, 1.4vw, 15px);
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   SELECT
+========================================================= */
+
+.form-select option {
+    background: var(--aw-bg-secondary);
+
+    color: var(--aw-text);
+}
+
+
+/* =========================================================
+   INPUT DESHABILITADO
+========================================================= */
+
+.form-control:disabled,
+.form-select:disabled {
+    background: rgba(255, 255, 255, 0.025);
+
+    color: var(--aw-text-muted);
+
+    opacity: 0.65;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   VALIDACIÓN
+========================================================= */
+
+.form-control.is-invalid {
+    border-color: var(--aw-danger);
+}
+
+.form-control.is-valid {
+    border-color: var(--aw-accent);
+}
+
+
+/* =========================================================
+   ENLACES
+========================================================= */
+
+a {
+    color: var(--aw-primary-light);
+
+    transition: color var(--aw-transition);
+}
+
+a:hover {
+    color: #aaa0ff;
+}
+
+
+/* =========================================================
+   IMÁGENES
+========================================================= */
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 991px) {
+
+    .navbar-collapse {
+        margin-top: 12px;
+
+        padding: 10px;
+
+        background: rgba(255, 255, 255, 0.03);
+
+        border: 1px solid var(--aw-card-border);
+
+        border-radius: 14px;
+    }
+
+    .nav-link {
+        padding: 10px 12px !important;
+    }
+
+    .nav-link::after {
+        display: none;
+    }
+
+    .aw-card,
+    .card {
+        margin-bottom: var(--aw-spacing-md);
+    }
+}
+
+
+/* =========================================================
+   MÓVIL
+========================================================= */
+
+@media (max-width: 576px) {
+
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .navbar {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .aw-brand {
+        font-size: 19px;
+    }
+
+    .aw-btn-outline,
+    .aw-btn-primary,
+    .btn-primary {
+        width: 100%;
+    }
+
+    .aw-card,
+    .card {
+        padding: 15px;
+
+        border-radius: 14px;
+    }
+
+    .form-control,
+    .form-select {
+        min-height: 44px;
+
+        padding: 9px 12px;
+    }
+
+    label {
+        margin-bottom: 6px;
+    }
+}
+
+
+/* =========================================================
+   PANTALLAS MUY PEQUEÑAS
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .aw-brand {
+        font-size: 17px;
+    }
+
+    .aw-card,
+    .card {
+        padding: 12px;
+    }
+}
+
+
+/* =========================================================
+   REDUCIR ANIMACIONES
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+    }
+}
+
+.aw-footer { width: 100%; margin-top: 60px; padding: 30px 0 20px; background: linear-gradient( 180deg, rgba(164, 22, 26, 0.08), rgba(18, 9, 12, 0.95) ); border-top: 1px solid var(--aw-card-border); color: var(--aw-text-muted); }
